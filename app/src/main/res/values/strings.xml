@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">JsonParsingDemoApplication</string>
+    <string name="add_cat">Add Category</string>
+    <string name="cat_name_en">Category Name In English :</string>
+    <string name="cat_name_hi">Category Name In Hindi :</string>
+    <string name="cat_des">Category Description :</string>
+    <string name="featured">Featured</string>
+    <string name="select_photo">Select Photo</string>
+    <string name="photo">Photo :</string>
+    <string name="add_data">Add Data</string>
+</resources>

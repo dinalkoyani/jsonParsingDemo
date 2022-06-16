@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCategoryDataActivity"
+    android:layout_margin="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/llCatNameEn"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:id="@+id/txtCatNameEn"
+            android:textColor="@color/purple_500"
+            android:textSize="15sp"
+            android:text="@string/cat_name_en"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:padding="8dp"
+            android:maxLines="2"
+            android:id="@+id/edtCatNameEn"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/llCatNameHi"
+        android:weightSum="1"
+        android:layout_below="@+id/llCatNameEn"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:id="@+id/txtCatNameHi"
+            android:textColor="@color/purple_500"
+            android:textSize="15sp"
+            android:text="@string/cat_name_hi"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:padding="8dp"
+            android:maxLines="2"
+            android:id="@+id/edtCatNameHi" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/llCatDes"
+        android:weightSum="1"
+        android:layout_below="@+id/llCatNameHi"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:id="@+id/txtCatDes"
+            android:textColor="@color/purple_500"
+            android:textSize="15sp"
+            android:text="@string/cat_des"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:padding="8dp"
+            android:maxLines="2"
+            android:id="@+id/edtCatDes"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/llSelectImage"
+        android:weightSum="1"
+        android:layout_below="@+id/llCatDes"
+        android:layout_marginTop="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPhoto"
+            android:textColor="@color/purple_500"
+            android:textSize="15sp"
+            android:text="@string/photo"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rlImage">
+
+            <ImageView
+                android:id="@+id/imgGallery"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/txtSelectPhoto"
+                android:adjustViewBounds="true"
+                android:background="@drawable/image_border" />
+            <TextView
+                android:id="@+id/txtSelectPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="0.5"
+                android:text="@string/select_photo"
+                android:textColor="@color/purple_500"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/featured"
+        android:textColor="@color/purple_500"
+        android:textSize="15dp"
+        android:layout_below="@+id/llSelectImage"
+        android:checked="true"
+        android:id="@+id/chkFeatured"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAddData"
+        android:layout_below="@+id/chkFeatured"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_bg"
+        android:padding="8dp"
+        android:text="@string/add_data"
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+</RelativeLayout>

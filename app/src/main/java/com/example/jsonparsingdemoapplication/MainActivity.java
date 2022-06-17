@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements
         SearchView.OnQueryTextListener, SearchView.OnCloseListener,View.OnClickListener{
     private SearchView search;
     private ExpandableCategoryListAdapter listAdapter;
-    private ExpandableListView myList;
+    private ExpandableListView categoryList;
     private ArrayList<CategoryData> categoryListData = new ArrayList<CategoryData>();
     FloatingActionButton btnFloatAdd;
     @Override
@@ -56,11 +56,23 @@ public class MainActivity extends AppCompatActivity implements
         search.setIconifiedByDefault(false);
         search.setOnQueryTextListener(this);
         search.setOnCloseListener(this);
+
+//        categoryList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+//            @Override
+//            public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
+//                if(categoryListData != null&&categoryListData.size()>0){
+//                    Intent detailIntent = new Intent(MainActivity.this,CategoryDetailActivity.class);
+//                    detailIntent.putExtra("CATEGORY_DATA",categoryListData.get(i));
+//                    startActivity(detailIntent);
+//                }
+//                return false;
+//            }
+//        });
     }
 
     private void initViews(){
         search = findViewById(R.id.search);
-        myList = findViewById(R.id.expandableList);
+        categoryList = findViewById(R.id.expandableList);
         btnFloatAdd = findViewById(R.id.btnFloating);
         btnFloatAdd.setOnClickListener(this::onClick);
     }
@@ -70,8 +82,48 @@ public class MainActivity extends AppCompatActivity implements
         Gson gson = new Gson();//create Gson object
         GroupCategoryModel modelData = gson.fromJson(loadJSONFromAsset(),GroupCategoryModel.class);
         categoryListData = modelData.data;
-        listAdapter = new ExpandableCategoryListAdapter(MainActivity.this, categoryListData);
-        myList.setAdapter(listAdapter);
+        ArrayList<CategoryData> catData = new ArrayList<>();
+        ArrayList<CategoryData> childData = new ArrayList<>();
+        ArrayList<CategoryData> dataarry = null;
+        if(dataarry == null){
+            dataarry = new ArrayList<>();
+        }
+        for (int i = 0; i < categoryListData.size(); i++) {
+
+            if(categoryListData.get(i).parentID.equalsIgnoreCase("0")){
+                categoryListData.get(i).categoryData = dataarry;
+                Log.i("Category",categoryListData.get(i).categoryData.toString());
+                catData.add(categoryListData.get(i));
+                Log.i("CategoryIDS",catData.get(0).toString());
+
+            }
+                for (int i1 = 0; i1 < catData.size(); i1++) {
+                    if (categoryListData.get(i).parentID.equalsIgnoreCase(catData.get(i1).categoryId)) {
+
+                        dataarry.add(categoryListData.get(i));
+
+
+                    }
+                }
+
+
+          //  Log.i("SUBIDS", String.valueOf(dataarry.size()));
+            listAdapter = new ExpandableCategoryListAdapter(MainActivity.this, catData,dataarry);
+            categoryList.setAdapter(listAdapter);
+        }
+//        for (int i = 0; i < categoryListData.size(); i++) {
+//            if(categoryListData.get(i).parentID.equalsIgnoreCase("0")){
+//                catData.add(categoryListData.get(i));
+//            }
+//            for (int i1 = 0; i1 < catData.size(); i1++) {
+//                if(categoryListData.get(i).parentID.equalsIgnoreCase(catData.get(i1).categoryId)){
+//                    childData.add(categoryListData.get(i));
+//
+//                }
+//            }
+//        }
+
+
     }
 
     public String loadJSONFromAsset() {
@@ -93,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements
     private void expandAll() {
         int count = listAdapter.getGroupCount();
         for (int i = 0; i < count; i++){
-            myList.expandGroup(i);
+            categoryList.expandGroup(i);
         }
     }
     @Override

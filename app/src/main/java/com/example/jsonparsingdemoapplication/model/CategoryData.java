@@ -9,4 +9,5 @@ public class CategoryData implements Serializable {
     public String categoryId,slug,description,parentID,attributeSet,icon,create_date;
     public boolean featured,status;
     public ArrayList<CategoryName> name;
+    public ArrayList<CategoryData> categoryData ;
 }

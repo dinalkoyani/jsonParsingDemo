@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCategoryDataActivity"
+    android:layout_margin="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/llCatNameEn">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:id="@+id/txtCatNameEn"
+            android:textColor="@color/purple_500"
+            android:textSize="15sp"
+            android:text="@string/cat_name_en"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:padding="8dp"
+            android:maxLines="2"
+            android:id="@+id/txtCatNameEnValue"
+            android:textColor="@color/black"
+            android:background="@drawable/image_border"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/llCatNameHi"
+        android:layout_below="@+id/llCatNameEn"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCatNameHi"
+            android:textColor="@color/purple_500"
+            android:textSize="15sp"
+            android:text="@string/cat_name_hi"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:maxLines="2"
+            android:id="@+id/txtCatNameHiValue"
+            android:textColor="@color/black"
+            android:background="@drawable/image_border"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/llCatDes"
+        android:weightSum="1"
+        android:layout_below="@+id/llCatNameHi"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:id="@+id/txtCatDes"
+            android:textColor="@color/purple_500"
+            android:textSize="15sp"
+            android:text="@string/cat_des"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:padding="8dp"
+            android:maxLines="2"
+            android:id="@+id/txtCatDesValue"
+            android:textColor="@color/black"
+            android:background="@drawable/image_border"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+</RelativeLayout>

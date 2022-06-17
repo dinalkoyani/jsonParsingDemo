@@ -3,6 +3,7 @@ package com.example.jsonparsingdemoapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -27,9 +28,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -158,7 +161,7 @@ public class AddCategoryDataActivity extends AppCompatActivity implements View.O
             }
             categoryData.categoryId = UUID.randomUUID().toString();
             categoryData.icon = bitmap.toString();
-            Gson gson = new Gson();//create Gson object
+            /*Gson gson = new Gson();//create Gson object
             GroupCategoryModel modelData = gson.fromJson(loadJSONFromAsset(),GroupCategoryModel.class);
             categoryListData = modelData.data;
             JSONArray employeeList = new JSONArray(categoryListData);
@@ -176,7 +179,7 @@ public class AddCategoryDataActivity extends AppCompatActivity implements View.O
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
     }
 
@@ -194,5 +197,36 @@ public class AddCategoryDataActivity extends AppCompatActivity implements View.O
             return null;
         }
         return json;
+    }
+
+//    private void CopyAssets() {
+//        AssetManager assetManager = getAssets();
+//        String[] files = null;
+//
+//
+//
+//        System.out.println("File name => "+filename);
+//        InputStream in = null;
+//        OutputStream out = null;
+//        try {
+//            in = assetManager.open(YOUR_ASSETS_FILE);   // if files resides inside the "Files" directory itself
+//            out = new FileOutputStream(STORAGE_PATH).toString() +"/" + filename);
+//            copyFile(in, out);
+//            in.close();
+//            in = null;
+//            out.flush();
+//            out.close();
+//            out = null;
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1){
+            out.write(buffer, 0, read);
+        }
     }
 }

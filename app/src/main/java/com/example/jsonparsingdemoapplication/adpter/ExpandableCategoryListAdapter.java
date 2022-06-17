@@ -20,10 +20,11 @@ public class ExpandableCategoryListAdapter extends BaseExpandableListAdapter {
     private Context context;
     public ArrayList<CategoryData> categoryList;
     private ArrayList<CategoryData> originalCategoryList;
-
-    public ExpandableCategoryListAdapter(Context context, ArrayList<CategoryData> categoryList){
+    public ArrayList<CategoryData> childList;
+    public ExpandableCategoryListAdapter(Context context, ArrayList<CategoryData> categoryList,ArrayList<CategoryData> childList){
         this.context = context;
         this.categoryList=categoryList;
+        this.childList = childList;
     }
     @Override
     public int getGroupCount() {
@@ -33,7 +34,7 @@ public class ExpandableCategoryListAdapter extends BaseExpandableListAdapter {
     @Override
     public int getChildrenCount(int i) {
         ArrayList<CategoryName> countryList = categoryList.get(i).name;
-        return countryList.size();
+        return childList.size();
     }
 
     @Override
@@ -47,8 +48,8 @@ public class ExpandableCategoryListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int i, int i1) {
-        ArrayList<CategoryName> countryList = categoryList.get(i).name;
-        return countryList.get(i1);
+        ArrayList<CategoryData> countryList = categoryList.get(i).categoryData;
+        return countryList.size();
     }
 
     @Override
@@ -75,14 +76,16 @@ public class ExpandableCategoryListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView heading = (TextView) view.findViewById(R.id.heading);
-        heading.setText(categoryData.slug);
+
+        heading.setText(categoryData.name.get(0).value);
+
 
         return view;
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        CategoryName categoryName = (CategoryName) getChild(i, i1);
+        CategoryData categoryData = childList.get(i1);
         if (view == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.child_row_layout, null);
@@ -90,7 +93,7 @@ public class ExpandableCategoryListAdapter extends BaseExpandableListAdapter {
 
         TextView lName = (TextView) view.findViewById(R.id.lName);
 
-        lName.setText(categoryName.value);
+        lName.setText(categoryData.name.get(0).value);
 
         return view;
     }
